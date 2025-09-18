@@ -29,6 +29,72 @@ class User(db.Model):
 	email = db.Column(db.String(120), unique=True, nullable=False)
 	senha = db.Column(db.String(100), nullable=False)
 
+class Produto(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    preco = db.Column(db.Float, nullable=False)
+    descricao = db.Column(db.String(200), nullable=True)
+
+@app.route('/produtos')
+def listar_produtos():
+    if 'usuario_id' not in session:  
+        return redirect(url_for('login'))
+
+    produtos = Produto.query.all()
+    return render_template('produtos.html', produtos=produtos)
+
+# Criar produto (já adicionado antes)
+@app.route('/produtos/novo', methods=['GET', 'POST'])
+def novo_produto():
+    if 'usuario_id' not in session:
+        return redirect(url_for('login'))
+
+    mensagem = None
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        preco = request.form.get('preco')
+        descricao = request.form.get('descricao')
+
+        try:
+            preco = float(preco)
+            novo = Produto(nome=nome, preco=preco, descricao=descricao)
+            db.session.add(novo)
+            db.session.commit()
+            return redirect(url_for('listar_produtos'))
+        except ValueError:
+            mensagem = "Preço inválido! Use apenas números."
+
+    return render_template('cadastro_produto.html', mensagem=mensagem)
+
+
+# Editar produto
+@app.route('/produtos/editar/<int:id>', methods=['GET', 'POST'])
+def editar_produto(id):
+    if 'usuario_id' not in session:
+        return redirect(url_for('login'))
+
+    produto = Produto.query.get_or_404(id)
+    if request.method == 'POST':
+        produto.nome = request.form.get('nome')
+        produto.preco = float(request.form.get('preco'))
+        produto.descricao = request.form.get('descricao')
+        db.session.commit()
+        return redirect(url_for('listar_produtos'))
+
+    return render_template('editar_produto.html', produto=produto)
+
+
+# Excluir produto
+@app.route('/produtos/excluir/<int:id>')
+def excluir_produto(id):
+    if 'usuario_id' not in session:
+        return redirect(url_for('login'))
+
+    produto = Produto.query.get_or_404(id)
+    db.session.delete(produto)
+    db.session.commit()
+    return redirect(url_for('listar_produtos'))
+
 @app.route('/')
 def index():
 	return render_template('index.html')

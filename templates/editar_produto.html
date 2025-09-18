@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <footer class="top-bar"></footer>
+
+    <main class="main-container">
+        <div class="card">
+            <h2>Editar Produto</h2>
+            <form method="POST">
+                <label for="nome">Nome:</label><br>
+                <input type="text" id="nome" name="nome" value="{{ produto.nome }}" required><br><br>
+
+                <label for="preco">Preço:</label><br>
+                <input type="text" id="preco" name="preco" value="{{ produto.preco }}" required><br><br>
+
+                <label for="descricao">Descrição:</label><br>
+                <input type="text" id="descricao" name="descricao" value="{{ produto.descricao }}"><br><br>
+
+                <input type="submit" value="Salvar" class="btn">
+            </form>
+
+            <br>
+            <a href="/produtos" class="btn">Voltar para lista</a>
+        </div>
+    </main>
+
+    <footer class="bottom-bar"></footer>
+</body>
+</html>

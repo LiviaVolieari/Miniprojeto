@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Produto</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <footer class="top-bar"></footer>
+
+    <main class="main-container">
+        <div class="card">
+            <h2>Novo Produto</h2>
+            <form method="POST" action="/produtos/novo">
+                <label for="nome">Nome:</label><br>
+                <input type="text" id="nome" name="nome" required><br><br>
+
+                <label for="preco">Preço:</label><br>
+                <input type="text" id="preco" name="preco" required><br><br>
+
+                <label for="descricao">Descrição:</label><br>
+                <input type="text" id="descricao" name="descricao"><br><br>
+
+                <input type="submit" value="Cadastrar" class="btn">
+            </form>
+
+            {% if mensagem %}
+                <p>{{ mensagem }}</p>
+            {% endif %}
+
+            <br>
+            <a href="/produtos" class="btn">Voltar para lista</a>
+        </div>
+    </main>
+
+    <footer class="bottom-bar"></footer>
+</body>
+</html>

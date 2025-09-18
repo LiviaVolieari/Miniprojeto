@@ -7,16 +7,30 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST" action="/login">
-        <label for="email">E-mail:</label><br>
-        <input type="email" id="email" name="email" required><br>
-        <label for="senha">Senha:</label><br>
-        <input type="password" id="senha" name="senha" required><br><br>
-        <input type="submit" value="Entrar">
-    </form>
-    {% if mensagem %}
-        <p>{{ mensagem }}</p>
-    {% endif %}
+    <footer class="top-bar"></footer>
+
+    <main class="main-container">
+        <div class="card">
+            <h2>Login</h2>
+            <form method="POST" action="/login">
+                <label for="email">E-mail:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="senha">Senha:</label><br>
+                <input type="password" id="senha" name="senha" required><br><br>
+
+                <input type="submit" value="Entrar" class="btn">
+            </form>
+            {% if mensagem %}
+                <p>{{ mensagem }}</p>
+            {% endif %}
+
+             <br>
+
+            <a href="/" class="btn">Voltar para início</a>
+        </div>
+    </main>
+
+    <footer class="bottom-bar"></footer>
 </body>
 </html>
