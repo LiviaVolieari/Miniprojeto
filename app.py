@@ -102,19 +102,42 @@ def index():
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
-	mensagem = None
-	if request.method == 'POST':
-		nome = request.form.get('nome')
-		email = request.form.get('email')
-		senha = request.form.get('senha')
-		if User.query.filter_by(email=email).first():
-			mensagem = 'E-mail já cadastrado!'
-		else:
-			novo_usuario = User(nome=nome, email=email, senha=senha)
-			db.session.add(novo_usuario)
-			db.session.commit()
-			mensagem = f'Usuário {nome} cadastrado com sucesso!'
-	return render_template('cadastro.html', mensagem=mensagem)
+    mensagem = None
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+
+        if User.query.filter_by(email=email).first():
+            mensagem = 'E-mail já cadastrado!'
+            # retorna a página de cadastro com a mensagem
+            return render_template('cadastro.html', mensagem=mensagem)
+        else:
+            novo_usuario = User(nome=nome, email=email, senha=senha)
+            db.session.add(novo_usuario)
+            db.session.commit()
+
+            # redireciona para o login
+            return redirect(url_for('login'))
+
+    # se for GET (abrindo a página pela primeira vez)
+    return render_template('cadastro.html', mensagem=mensagem)
+
+# @app.route('/cadastro', methods=['GET', 'POST'])
+# def cadastro():
+# 	mensagem = None
+# 	if request.method == 'POST':
+# 		nome = request.form.get('nome')
+# 		email = request.form.get('email')
+# 		senha = request.form.get('senha')
+# 		if User.query.filter_by(email=email).first():
+# 			mensagem = 'E-mail já cadastrado!'
+# 		else:
+# 			novo_usuario = User(nome=nome, email=email, senha=senha)
+# 			db.session.add(novo_usuario)
+# 			db.session.commit()
+   
+# 			return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
