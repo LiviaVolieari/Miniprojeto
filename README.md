@@ -70,17 +70,21 @@ http://127.0.0.1:5000
 ## 👥 Contribuintes
 
 - [Emanoelly Francinny](https://github.com/FranbryloB)  
-    Implementou as páginas iniciais (login, index, cadastro);
+    Implementou as páginas iniciais (login, index, cadastro).
+
     Implementou o CSS base.
 
 - [Isabele Fernanda](https://github.com/Isa-Fee)  
     Criou os arquivos requirements.txt e README.md (bem como organização do mesmo).
+
     Desenvolveu melhorias no CSS da página de produtos.
 
 - [Livia Tainá](https://github.com/LiviaVolieari)  
     Realizou correções no código, remoção do ambiente virtual, ajustes no CSS e rotas.
+
     Organizou o repositório e fez limpeza com .gitignore.
 
 - [Tamíris Medeiros](https://github.com/medeirostamiris)  
     Criou a funcionalidade de Cadastro de Produtos.
+    
     Adcionou produtos ao banco.
