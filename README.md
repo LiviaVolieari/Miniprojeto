@@ -37,25 +37,29 @@ Usuários podem cadastrar, visualizar, editar e excluir produtos, além de possu
 
 
 2. **Crie e ative o ambiente virtual para isolar as dependências do projeto**
+    ```sh
+    # Criar ambiente virtual
+    python -m venv venv
 
-# Criar ambiente virtual
-python -m venv venv
+    # Ativar no Windows
+    venv\Scripts\activate
 
-# Ativar no Windows
-venv\Scripts\activate
-
-# Ativar no Linux/Mac
-source venv/bin/activate
-
+    # Ativar no Linux/Mac
+    source venv/bin/activate
+        ```
 
 3. **Instale todas as bibliotecas necessárias listadas no arquivo requirements.txt**
 
-pip install -r requirements.txt
+    ```sh
+    pip install -r requirements.txt
+        ```
 
 
 4. **Execute a aplicação**
 
-flask run --debug
+    ```sh
+    flask run --debug
+        ```
 
 
 5. **Abra no navegador:**
