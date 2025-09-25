@@ -43,7 +43,6 @@ def listar_produtos():
     produtos = Produto.query.all()
     return render_template('produtos.html', produtos=produtos)
 
-# Criar produto (já adicionado antes)
 @app.route('/produtos/novo', methods=['GET', 'POST'])
 def novo_produto():
     if 'usuario_id' not in session:
@@ -66,8 +65,6 @@ def novo_produto():
 
     return render_template('cadastro_produto.html', mensagem=mensagem)
 
-
-# Editar produto
 @app.route('/produtos/editar/<int:id>', methods=['GET', 'POST'])
 def editar_produto(id):
     if 'usuario_id' not in session:
@@ -83,8 +80,6 @@ def editar_produto(id):
 
     return render_template('editar_produto.html', produto=produto)
 
-
-# Excluir produto
 @app.route('/produtos/excluir/<int:id>')
 def excluir_produto(id):
     if 'usuario_id' not in session:
@@ -99,7 +94,6 @@ def excluir_produto(id):
 def index():
 	return render_template('index.html')
 
-
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     mensagem = None
@@ -110,35 +104,18 @@ def cadastro():
 
         if User.query.filter_by(email=email).first():
             mensagem = 'E-mail já cadastrado!'
-            # retorna a página de cadastro com a mensagem
+            # vai pra página de cadastro com a mensagem
             return render_template('cadastro.html', mensagem=mensagem)
         else:
             novo_usuario = User(nome=nome, email=email, senha=senha)
             db.session.add(novo_usuario)
             db.session.commit()
 
-            # redireciona para o login
+            # manda para o login
             return redirect(url_for('login'))
 
     # se for GET (abrindo a página pela primeira vez)
     return render_template('cadastro.html', mensagem=mensagem)
-
-# @app.route('/cadastro', methods=['GET', 'POST'])
-# def cadastro():
-# 	mensagem = None
-# 	if request.method == 'POST':
-# 		nome = request.form.get('nome')
-# 		email = request.form.get('email')
-# 		senha = request.form.get('senha')
-# 		if User.query.filter_by(email=email).first():
-# 			mensagem = 'E-mail já cadastrado!'
-# 		else:
-# 			novo_usuario = User(nome=nome, email=email, senha=senha)
-# 			db.session.add(novo_usuario)
-# 			db.session.commit()
-   
-# 			return redirect(url_for('login'))
-
 
 if __name__ == '__main__':
 	with app.app_context():
