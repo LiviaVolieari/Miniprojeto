@@ -51,7 +51,7 @@ Usuários podem cadastrar, visualizar, editar e excluir produtos, além de possu
 3. **Instale todas as bibliotecas necessárias listadas no arquivo requirements.txt**
 
     ```sh
-    pip install -r requirements.txt
+    pip install -r requeriments.txt
         ```
 
 
