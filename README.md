@@ -39,10 +39,10 @@ Usuários podem cadastrar, visualizar, editar e excluir produtos, além de possu
 2. **Crie e ative o ambiente virtual para isolar as dependências do projeto**
     ```sh
     # Criar ambiente virtual
-    python -m venv venv
+    python -m venv env
 
     # Ativar no Windows
-    venv\Scripts\activate
+    ./env/Scripts/activate
 
     # Ativar no Linux/Mac
     source venv/bin/activate
