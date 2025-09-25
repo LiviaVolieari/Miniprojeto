@@ -42,7 +42,7 @@ Usuários podem cadastrar, visualizar, editar e excluir produtos, além de possu
     python -m venv env
 
     # Ativar no Windows
-    ./env/Scripts/activate
+    .\env\Scripts\activate
 
     # Ativar no Linux/Mac
     source venv/bin/activate
